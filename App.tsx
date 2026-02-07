@@ -7,6 +7,7 @@ import Gallery from './components/Gallery';
 import Transportation from './components/Transportation';
 import Rsvp from './components/Rsvp';
 import Footer from './components/Footer';
+import MusicPlayer from './components/MusicPlayer';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       <Transportation />
       <Rsvp />
       <Footer />
+      <MusicPlayer />
     </div>
   );
 };
