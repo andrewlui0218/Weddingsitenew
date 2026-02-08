@@ -1,9 +1,8 @@
 import React from 'react';
 
 const Hero: React.FC = () => {
-  // Ensure your image is located at public/images/hero-bg.jpg
-  // Use ./ to make it relative to the base URL (fixes GitHub Pages 404)
-  const bgImage = "./images/hero-bg.jpg"; 
+  // Image path relative to the public folder (served at root)
+  const bgImage = "images/hero-bg.jpg"; 
 
   return (
     <section 

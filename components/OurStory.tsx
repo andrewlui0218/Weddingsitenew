@@ -8,12 +8,12 @@ interface StoryEvent {
 }
 
 const stories: StoryEvent[] = [
-  { date: '12th May, 2021', title: 'Our first Date!', image: './images/story-1.jpg' },
-  { date: '25th December, 2021', title: 'Our first Christmas!', image: './images/story-2.jpg' },
-  { date: '12th October, 2024', title: 'Tottori, Japan', image: './images/story-3.jpg' },
-  { date: '23rd October, 2024', title: 'Happy Graduation!', image: './images/story-4.jpg' },
-  { date: '15th November, 2024', title: 'We are engaged!', image: './images/story-5.jpg' },
-  { date: '25th April, 2026', title: 'Our Big Day!', image: './images/story-6.jpg' },
+  { date: '12th May, 2021', title: 'Our first Date!', image: 'images/story-1.jpg' },
+  { date: '25th December, 2021', title: 'Our first Christmas!', image: 'images/story-2.jpg' },
+  { date: '12th October, 2024', title: 'Tottori, Japan', image: 'images/story-3.jpg' },
+  { date: '23rd October, 2024', title: 'Happy Graduation!', image: 'images/story-4.jpg' },
+  { date: '15th November, 2024', title: 'We are engaged!', image: 'images/story-5.jpg' },
+  { date: '25th April, 2026', title: 'Our Big Day!', image: 'images/story-6.jpg' },
 ];
 
 const StoryItem: React.FC<{ event: StoryEvent; index: number }> = ({ event, index }) => {
@@ -33,10 +33,11 @@ const StoryItem: React.FC<{ event: StoryEvent; index: number }> = ({ event, inde
 
       {/* Content Card */}
       <div className={`w-full ml-6 md:ml-0 bg-white p-4 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow`}>
+        {/* Changed from fixed height/object-cover to w-full h-auto to show full image */}
         <img 
           src={event.image} 
           alt={event.title} 
-          className="w-full h-48 md:h-56 object-cover rounded-xl mb-4 hover:brightness-105 transition-all"
+          className="w-full h-auto rounded-xl mb-4 hover:brightness-105 transition-all"
         />
         <span className="font-serif font-bold text-xl text-wedding-dark block mb-1">
           {event.date}

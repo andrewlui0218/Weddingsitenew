@@ -90,38 +90,38 @@ const EventDetails: React.FC = () => {
           ))}
         </div>
 
-        {/* Add to Calendar Buttons - Force Horizontal */}
-        <div className={`flex flex-row flex-nowrap justify-center gap-2 md:gap-4 mb-12 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        {/* Add to Calendar Buttons - Force Horizontal & Compact for Mobile */}
+        <div className={`flex flex-row justify-center items-center gap-2 md:gap-4 mb-12 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <a 
             href={googleCalendarUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group flex flex-1 md:flex-none justify-center items-center px-3 py-2.5 md:px-6 bg-white border border-gray-200 rounded-full text-xs md:text-sm font-semibold tracking-wide text-gray-700 hover:text-wedding-primary hover:border-wedding-primary/50 hover:shadow-md transition-all duration-300 whitespace-nowrap"
+            className="group flex-initial justify-center items-center px-3 py-2 md:px-6 bg-white border border-gray-200 rounded-full text-[10px] md:text-sm font-semibold tracking-wide text-gray-700 hover:text-wedding-primary hover:border-wedding-primary/50 hover:shadow-md transition-all duration-300 whitespace-nowrap"
           >
-            <i className="fa-brands fa-google text-base md:text-lg mr-1.5 md:mr-2 text-wedding-primary group-hover:scale-110 transition-transform"></i>
+            <i className="fa-brands fa-google text-sm md:text-lg mr-1.5 md:mr-2 text-wedding-primary group-hover:scale-110 transition-transform"></i>
             Google Calendar
           </a>
           
           <button 
             onClick={handleDownloadIcs}
-            className="group flex flex-1 md:flex-none justify-center items-center px-3 py-2.5 md:px-6 bg-white border border-gray-200 rounded-full text-xs md:text-sm font-semibold tracking-wide text-gray-700 hover:text-wedding-primary hover:border-wedding-primary/50 hover:shadow-md transition-all duration-300 whitespace-nowrap"
+            className="group flex-initial justify-center items-center px-3 py-2 md:px-6 bg-white border border-gray-200 rounded-full text-[10px] md:text-sm font-semibold tracking-wide text-gray-700 hover:text-wedding-primary hover:border-wedding-primary/50 hover:shadow-md transition-all duration-300 whitespace-nowrap"
           >
-            <i className="fa-regular fa-calendar-check text-base md:text-lg mr-1.5 md:mr-2 text-wedding-primary group-hover:scale-110 transition-transform"></i>
+            <i className="fa-regular fa-calendar-check text-sm md:text-lg mr-1.5 md:mr-2 text-wedding-primary group-hover:scale-110 transition-transform"></i>
             iCal / Outlook
           </button>
         </div>
 
-        {/* Schedule Block - Force Horizontal on Mobile */}
+        {/* Schedule Block - Horizontal on Mobile (reduced gap) */}
         <div 
-          className={`flex flex-row justify-center items-start gap-4 md:gap-16 max-w-3xl mx-auto border-t border-wedding-primary/30 pt-10 mb-12 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          className={`flex flex-row justify-center items-start gap-2 md:gap-16 max-w-3xl mx-auto border-t border-wedding-primary/30 pt-10 mb-12 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
         >
           {scheduleItems.map((item, index) => (
-            <div key={index} className="flex flex-col items-center group flex-1">
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-wedding-dark mb-2 md:mb-3">
+            <div key={index} className="flex flex-col items-center group flex-1 px-1">
+              <span className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-wedding-dark mb-2 md:mb-3">
                 {item.title}
               </span>
-              <i className={`fa-solid ${item.icon} text-xl md:text-2xl text-wedding-primary mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300`}></i>
-              <span className="font-serif text-lg md:text-2xl font-bold text-wedding-text whitespace-nowrap">
+              <i className={`fa-solid ${item.icon} text-lg md:text-2xl text-wedding-primary mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300`}></i>
+              <span className="font-serif text-base md:text-2xl font-bold text-wedding-text whitespace-nowrap">
                 {item.time}
               </span>
             </div>

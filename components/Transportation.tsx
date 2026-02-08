@@ -4,9 +4,9 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const Transportation: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation();
 
-  // Define paths for local images with relative path prefix (./)
-  const mapImage = "./images/transport-map.jpg";
-  const guideImage = "./images/transport-guide.jpg";
+  // Define paths for local images with "images/" prefix
+  const mapImage = "images/transport-map.jpg";
+  const guideImage = "images/transport-guide.jpg";
 
   return (
     <section id="transportation" className="py-20 bg-gray-50" ref={ref}>
@@ -17,8 +17,9 @@ const Transportation: React.FC = () => {
         
         <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
           <div className="flex-1 bg-white p-2 rounded-2xl shadow-lg border border-gray-100">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-200">
-              <img src={mapImage} alt="Direction Map" className="w-full h-full object-cover" />
+            {/* Removed aspect-[4/3] to allow natural image height */}
+            <div className="relative overflow-hidden rounded-xl bg-gray-200">
+              <img src={mapImage} alt="Direction Map" className="w-full h-auto" />
               <div className="absolute bottom-0 left-0 right-0 bg-white/90 py-2 text-center font-semibold text-wedding-dark">
                 Location Map
               </div>
@@ -26,8 +27,9 @@ const Transportation: React.FC = () => {
           </div>
           
           <div className="flex-1 bg-white p-2 rounded-2xl shadow-lg border border-gray-100">
-             <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-200">
-               <img src={guideImage} alt="Transport Guide" className="w-full h-full object-cover" />
+             {/* Removed aspect-[4/3] to allow natural image height */}
+             <div className="relative overflow-hidden rounded-xl bg-gray-200">
+               <img src={guideImage} alt="Transport Guide" className="w-full h-auto" />
                <div className="absolute bottom-0 left-0 right-0 bg-white/90 py-2 text-center font-semibold text-wedding-dark">
                 Transport Guide
               </div>

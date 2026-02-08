@@ -7,11 +7,11 @@ const Gallery: React.FC = () => {
 
   // Generate paths for local images
   // HK: gallery-hk-1.jpg to gallery-hk-6.jpg
-  // Use ./ to make paths relative
-  const hkPhotos = Array.from({ length: 6 }).map((_, i) => `./images/gallery-hk-${i + 1}.jpg`);
+  // Use "images/" prefix (relative to public root)
+  const hkPhotos = Array.from({ length: 6 }).map((_, i) => `images/gallery-hk-${i + 1}.jpg`);
   
   // Japan: gallery-jp-1.jpg to gallery-jp-6.jpg
-  const jpPhotos = Array.from({ length: 6 }).map((_, i) => `./images/gallery-jp-${i + 1}.jpg`);
+  const jpPhotos = Array.from({ length: 6 }).map((_, i) => `images/gallery-jp-${i + 1}.jpg`);
 
   const currentPhotos = activeTab === 'hk' ? hkPhotos : jpPhotos;
 
@@ -63,7 +63,7 @@ const Gallery: React.FC = () => {
               <img 
                 src={src} 
                 alt={`Gallery ${activeTab} ${index}`} 
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 loading="lazy"
               />
             </div>
