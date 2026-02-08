@@ -22,9 +22,6 @@ const Rsvp: React.FC = () => {
           <h3 className="font-serif text-5xl font-bold text-wedding-dark tracking-wider mb-4">
             RSVP
           </h3>
-          <p className="font-sans text-gray-500 max-w-lg mx-auto text-sm md:text-base">
-            Please kindly respond by March 25th, 2026. We look forward to celebrating with you!
-          </p>
         </div>
         
         <div className="bg-white rounded-[20px] md:rounded-[40px] shadow-xl overflow-hidden border border-wedding-primary/10 relative ring-4 ring-white/50">

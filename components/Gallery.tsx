@@ -7,10 +7,11 @@ const Gallery: React.FC = () => {
 
   // Generate paths for local images
   // HK: gallery-hk-1.jpg to gallery-hk-6.jpg
-  const hkPhotos = Array.from({ length: 6 }).map((_, i) => `/images/gallery-hk-${i + 1}.jpg`);
+  // Use ./ to make paths relative
+  const hkPhotos = Array.from({ length: 6 }).map((_, i) => `./images/gallery-hk-${i + 1}.jpg`);
   
   // Japan: gallery-jp-1.jpg to gallery-jp-6.jpg
-  const jpPhotos = Array.from({ length: 6 }).map((_, i) => `/images/gallery-jp-${i + 1}.jpg`);
+  const jpPhotos = Array.from({ length: 6 }).map((_, i) => `./images/gallery-jp-${i + 1}.jpg`);
 
   const currentPhotos = activeTab === 'hk' ? hkPhotos : jpPhotos;
 

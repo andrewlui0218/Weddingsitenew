@@ -4,9 +4,9 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const Transportation: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation();
 
-  // Define paths for local images
-  const mapImage = "/images/transport-map.jpg";
-  const guideImage = "/images/transport-guide.jpg";
+  // Define paths for local images with relative path prefix (./)
+  const mapImage = "./images/transport-map.jpg";
+  const guideImage = "./images/transport-guide.jpg";
 
   return (
     <section id="transportation" className="py-20 bg-gray-50" ref={ref}>
@@ -33,10 +33,6 @@ const Transportation: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="text-center mt-8 text-gray-500 italic text-sm">
-          *Shuttle bus services will be available from designated MTR stations.
         </div>
       </div>
     </section>
