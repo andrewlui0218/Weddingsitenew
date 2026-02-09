@@ -15,14 +15,16 @@ const App: React.FC = () => {
     <div className="w-full min-h-screen flex flex-col relative">
       {/* 
         Global Background Layer 
-        - Fixed position so it stays while scrolling.
-        - z-[-1] ensures it stays behind content.
-        - It will show through the semi-transparent backgrounds of the sections.
+        - Using an <img> tag with fetchPriority="high" allows the browser to discover 
+          and load the LCP image faster than a background-image in CSS.
       */}
-      <div 
-        className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      ></div>
+      <img 
+        src={bgImage}
+        alt="Background"
+        className="fixed inset-0 z-[-1] w-full h-full object-cover object-center"
+        // @ts-ignore - fetchPriority is valid in React 18+ HTML attributes but types might lag
+        fetchPriority="high"
+      />
 
       <Hero />
       <EventDetails />
