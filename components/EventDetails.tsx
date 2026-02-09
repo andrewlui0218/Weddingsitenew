@@ -50,16 +50,14 @@ const EventDetails: React.FC = () => {
   return (
     <section 
       id="date-timer-page" 
-      className="py-24 px-4 bg-wedding-bg relative overflow-hidden"
+      // Changed bg-wedding-bg to bg-white/90 to let the global background show through faintly
+      className="py-24 px-4 bg-white/90 relative overflow-hidden backdrop-blur-sm"
       ref={ref}
     >
-      {/* Decorative background overlay */}
-      <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-
       <div className="max-w-4xl mx-auto text-center relative z-10">
         
         {/* Title Block */}
-        <div className={`mb-8 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`mb-10 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="font-serif text-5xl md:text-6xl text-wedding-dark mb-4">
             25th April, 2026
           </div>
@@ -71,14 +69,34 @@ const EventDetails: React.FC = () => {
           </div>
         </div>
 
-        {/* Countdown Block */}
+        {/* Schedule Block (Moved Up) */}
         <div 
-          className={`flex justify-center gap-3 md:gap-6 mb-10 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          className={`flex flex-row justify-center items-start gap-2 md:gap-16 max-w-3xl mx-auto mb-8 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+        >
+          {scheduleItems.map((item, index) => (
+            <div key={index} className="flex flex-col items-center group flex-1 px-1">
+              <span className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-wedding-dark mb-2 md:mb-3">
+                {item.title}
+              </span>
+              <i className={`fa-solid ${item.icon} text-lg md:text-2xl text-wedding-primary mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300`}></i>
+              <span className="font-serif text-base md:text-2xl font-bold text-wedding-text whitespace-nowrap">
+                {item.time}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider Line */}
+        <div className={`w-24 h-[1px] bg-wedding-dark/30 mx-auto mb-10 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+
+        {/* Countdown Block (Moved Down) */}
+        <div 
+          className={`flex justify-center gap-3 md:gap-6 mb-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
         >
           {Object.entries(timeLeft).map(([unit, value], i) => (
             <div 
               key={unit} 
-              className="bg-white/50 border border-wedding-primary rounded-xl p-3 md:p-4 min-w-[70px] md:min-w-[90px] shadow-sm hover:-translate-y-1 transition-transform duration-300"
+              className="bg-white/80 border border-wedding-primary rounded-xl p-3 md:p-4 min-w-[70px] md:min-w-[90px] shadow-sm hover:-translate-y-1 transition-transform duration-300"
             >
               <span className="font-serif text-3xl md:text-4xl font-bold text-wedding-dark block leading-none">
                 {String(value).padStart(2, '0')}
@@ -90,8 +108,8 @@ const EventDetails: React.FC = () => {
           ))}
         </div>
 
-        {/* Add to Calendar Buttons - Force Horizontal & Compact for Mobile */}
-        <div className={`flex flex-row justify-center items-center gap-2 md:gap-4 mb-12 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        {/* Add to Calendar Buttons */}
+        <div className={`flex flex-row justify-center items-center gap-2 md:gap-4 mb-4 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <a 
             href={googleCalendarUrl} 
             target="_blank" 
@@ -109,23 +127,6 @@ const EventDetails: React.FC = () => {
             <i className="fa-regular fa-calendar-check text-sm md:text-lg mr-1.5 md:mr-2 text-wedding-primary group-hover:scale-110 transition-transform"></i>
             iCal / Outlook
           </button>
-        </div>
-
-        {/* Schedule Block - Horizontal on Mobile (reduced gap) */}
-        <div 
-          className={`flex flex-row justify-center items-start gap-2 md:gap-16 max-w-3xl mx-auto border-t border-wedding-primary/30 pt-10 mb-12 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-        >
-          {scheduleItems.map((item, index) => (
-            <div key={index} className="flex flex-col items-center group flex-1 px-1">
-              <span className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-wedding-dark mb-2 md:mb-3">
-                {item.title}
-              </span>
-              <i className={`fa-solid ${item.icon} text-lg md:text-2xl text-wedding-primary mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300`}></i>
-              <span className="font-serif text-base md:text-2xl font-bold text-wedding-text whitespace-nowrap">
-                {item.time}
-              </span>
-            </div>
-          ))}
         </div>
 
       </div>

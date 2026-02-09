@@ -3,20 +3,28 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Gallery: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'hk' | 'japan'>('hk');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   // Generate paths for local images
-  // HK: gallery-hk-1.jpg to gallery-hk-6.jpg
-  // Use "images/" prefix (relative to public root)
   const hkPhotos = Array.from({ length: 6 }).map((_, i) => `images/gallery-hk-${i + 1}.jpg`);
-  
-  // Japan: gallery-jp-1.jpg to gallery-jp-6.jpg
   const jpPhotos = Array.from({ length: 6 }).map((_, i) => `images/gallery-jp-${i + 1}.jpg`);
 
   const currentPhotos = activeTab === 'hk' ? hkPhotos : jpPhotos;
 
+  const openLightbox = (src: string) => {
+    setSelectedImage(src);
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'auto'; // Restore scrolling
+  };
+
   return (
-    <section id="pre-wedding" className="py-24 bg-wedding-bg" ref={ref}>
+    // Changed bg-wedding-bg to bg-white/90
+    <section id="pre-wedding" className="py-24 bg-white/90 backdrop-blur-sm" ref={ref}>
       <div className={`max-w-6xl mx-auto px-4 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         
         <div className="text-center mb-12">
@@ -46,9 +54,6 @@ const Gallery: React.FC = () => {
           </div>
         </div>
 
-        {/* 
-          Key ensures the container re-renders when tab changes, triggering the animations again.
-        */}
         <div key={activeTab} className="columns-2 md:columns-3 gap-4 space-y-4">
           {currentPhotos.map((src, index) => (
             <div 
@@ -63,14 +68,37 @@ const Gallery: React.FC = () => {
               <img 
                 src={src} 
                 alt={`Gallery ${activeTab} ${index}`} 
-                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700 ease-in-out cursor-zoom-in"
                 loading="lazy"
+                onClick={() => openLightbox(src)}
               />
             </div>
           ))}
         </div>
-
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 animate-fade-in"
+          onClick={closeLightbox}
+        >
+          <div className="relative max-w-7xl max-h-full w-full flex justify-center">
+            <button 
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+              onClick={closeLightbox}
+            >
+              <i className="fa-solid fa-xmark text-4xl"></i>
+            </button>
+            <img 
+              src={selectedImage} 
+              alt="Full view" 
+              className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl animate-zoom-in"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -32,8 +32,7 @@ const StoryItem: React.FC<{ event: StoryEvent; index: number }> = ({ event, inde
       `}></div>
 
       {/* Content Card */}
-      <div className={`w-full ml-6 md:ml-0 bg-white p-4 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow`}>
-        {/* Changed from fixed height/object-cover to w-full h-auto to show full image */}
+      <div className={`w-full ml-6 md:ml-0 bg-white/95 p-4 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow`}>
         <img 
           src={event.image} 
           alt={event.title} 
@@ -52,7 +51,8 @@ const StoryItem: React.FC<{ event: StoryEvent; index: number }> = ({ event, inde
 
 const OurStory: React.FC = () => {
   return (
-    <section id="our-story" className="py-20 px-4 bg-gray-50 relative">
+    // Changed bg-gray-50 to bg-white/90
+    <section id="our-story" className="py-20 px-4 bg-white/90 backdrop-blur-sm relative">
       <div className="text-center mb-16">
         <h3 className="font-serif text-5xl font-bold text-wedding-dark tracking-wider mb-4">Our Story</h3>
         <div className="h-1 w-20 bg-wedding-primary mx-auto rounded-full"></div>

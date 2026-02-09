@@ -7,12 +7,10 @@ const Rsvp: React.FC = () => {
   return (
     <section 
       id="rsvp-section" 
-      className="py-24 bg-wedding-bg relative overflow-hidden" 
+      // Changed bg-wedding-bg to bg-white/90
+      className="py-24 bg-white/90 backdrop-blur-sm relative overflow-hidden" 
       ref={ref}
     >
-      {/* Decorative background pattern similar to EventDetails */}
-      <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-      
       {/* Soft gradient orbs for visual depth with float animation */}
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-wedding-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none animate-float"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-wedding-dark/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none animate-float-delayed"></div>
@@ -29,10 +27,6 @@ const Rsvp: React.FC = () => {
           <div className="h-1.5 w-full bg-gradient-to-r from-wedding-primary/30 via-wedding-dark/30 to-wedding-primary/30"></div>
           
           <div className="relative w-full">
-            {/* 
-              Taller height on mobile because Google Forms stack vertically.
-              Shorter height on desktop where fields often sit side-by-side or occupy less vertical space.
-            */}
             <iframe 
               src="https://docs.google.com/forms/d/e/1FAIpQLSfaH24owLvRyQwfxxAPKVw_gSAdb72lLFm3TTF1JN0Gi2XzOA/viewform?embedded=true" 
               className="w-full h-[1750px] md:h-[1050px] border-0 bg-transparent block"
